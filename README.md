@@ -239,7 +239,7 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 
 ### Citation
 
-If you use our datasetd (AGORA-HPE and CMU-HPE) or models in your research, please cite with:
+If you use our reconstructed datasets (AGORA-HPE and CMU-HPE) or works in your research, please cite with:
 ```
 @inproceedings{joo2015panoptic,
   title={Panoptic studio: A massively multiview system for social motion capture},
