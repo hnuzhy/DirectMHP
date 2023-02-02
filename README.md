@@ -57,7 +57,9 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 ## References
 
 * [YOLOv5 🚀 in PyTorch > ONNX > CoreML > TFLite](https://github.com/ultralytics/yolov5)
-* [img2pose: Face Alignment and Detection via 6DoF, Face Pose Estimation - CVPR 2021](https://github.com/vitoralbiero/img2pose)
+* [BMVC 2020 - WHENet: Real-time Fine-Grained Estimation for Wide Range Head Pose](https://github.com/Ascend-Research/HeadPoseEstimation-WHENet)
+* [CVPR 2021 - img2pose: Face Alignment and Detection via 6DoF, Face Pose Estimation](https://github.com/vitoralbiero/img2pose)
+* [ICIP 2022 - 6D Rotation Representation for Unconstrained Head Pose Estimation](https://github.com/thohemp/6DRepNet)
 
 ### Citation
 
