@@ -8,10 +8,10 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 
 ## Illustrations
 
-* Example images of two constructed challenging datasets: AGORA-HPE (*top row*) and CMU-HPE (*middle row*), and two widely used single HPE datasets: 300W-LP & AFLW2000 (*left-down*) and BIWI (*right-down*).
+* **Fig. 1.** Example images of two constructed challenging datasets: AGORA-HPE (*top row*) and CMU-HPE (*middle row*), and two widely used single HPE datasets: 300W-LP & AFLW2000 (*left-down*) and BIWI (*right-down*).
 ![example1](./materials/datasetexamples.png)
 
-* The pipeline illustration of existing HPE methods, which are all based on two separate stages, and our proposed one-stage MPHPE.
+* **Fig. 2.** The pipeline illustration of existing HPE methods, which are all based on two separate stages, and our proposed one-stage MPHPE.
 ![example2](./materials/illustration.png)
 
 
