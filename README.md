@@ -38,22 +38,172 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 
 ## Training and Testing
 
-* **Yaml:** Please refer these `./data/\*.yaml` files to config your own .yaml file
+* **Yaml:** Please refer these `./data/*.yaml` files to config your own .yaml file
 
 * **Pretrained weights:** For YOLOv5 weights, please download the version 5.0 that we have used. And put them under the `./weights/` folder
   ```
   yolov5s6.pt [https://github.com/ultralytics/yolov5/releases/download/v5.0/yolov5s6.pt]
   yolov5m6.pt [https://github.com/ultralytics/yolov5/releases/download/v5.0/yolov5m6.pt]
-  yolov5l6.pt [https://github.com/ultralytics/yolov5/releases/download/v5.0/yolov5l6.pt]
   ```
 
-* **Training:**
+* **MPHPE task:**
+  > Basic training on `AGORA-HPE` Dataset. Totally 15478 (train 14408 + val 1070) images.
+  
+  * AGORA-HPE details
+  ```
+  validation: original images-->1225, labeled images-->1077, left images-->1070, left instances-->7505
+  train: original images-->14529, labeled images-->14529, left images-->14408, left instances-->105046
+  frontal_face_num:        {'train': 52639, 'validation': 3781}
+  ```
+  * DirectMHP-S
+  ```bash
+  # training
+  $ python -m torch.distributed.launch --nproc_per_node 4 train.py --workers 16 --device 0,1,2,3 \
+    --img 1280 --batch 120 --epochs 300 --data data/agora_coco.yaml --hyp data/hyp-p6.yaml \
+    --weights weights/yolov5s6.pt --project runs/DirectMHP --mse_conf_thre 0.40 --mse_loss_w 0.1 \
+    --name agora_s_1280_e300_t40_lw010
+  
+  # testing (w/o TTA)
+  $ python val.py --rect --data data/agora_coco.yaml --img 1280 \
+    --weights runs/DirectMHP/agora_s_1280_e300_t40_lw010/weights/best.pt --batch-size 8 --device 3 --frontal-face
+  
+  # result
+  narrow-range: mAP=82.0, [MAE, Pitch, Yaw, Roll]: 11.7567, 11.8002, 12.3257, 11.1441
+  full-range:   mAP=74.5, [MAE, Pitch, Yaw, Roll]: 13.2259, 12.9754, 14.9826, 11.7196
+  ```
+  * DirectMHP-M
+  ```bash
+  # training 
+  $ python -m torch.distributed.launch --nproc_per_node 4 train.py --workers 16 --device 0,1,2,3 \
+    --img 1280 --batch 64 --epochs 300 --data data/agora_coco.yaml --hyp data/hyp-p6.yaml \
+    --weights weights/yolov5m6.pt --project runs/DirectMHP --mse_conf_thre 0.40 --mse_loss_w 0.10 \
+    --name agora_m_1280_e300_t40_lw010
+  
+  # testing (w/o TTA)
+  $ python val.py --rect --data data/agora_coco.yaml --img 1280 \
+    --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt --batch-size 8 --device 3 --frontal-face
+  
+  # result
+  narrow-range: mAP=83.5, [MAE, Pitch, Yaw, Roll]: 10.5133, 11.1899,  9.8853, 10.4646
+  full-range:   mAP=76.7, [MAE, Pitch, Yaw, Roll]: 11.9422, 12.2837, 12.5234, 11.0194
+  ```
 
-* **Testing:**
+  > Basic training on `CMU-HPE` Dataset. Totally 31934 (train 15718 + val 16216) images.
+  
+  * CMU-HPE details
+  ```
+  train: images --> 15718, head instances --> 35725
+  val: images --> 16216, head instances --> 32738
+  frontal_face_num:        {'train': 18447, 'val': 16497}
+  ```
+  * DirectMHP-S
+  ```bash
+  # training (using --noval for faster training)
+  $ python -m torch.distributed.launch --nproc_per_node 4 train.py --workers 16 --device 0,1,2,3 \
+    --img 1280 --batch 120 --epochs 200 --data data/cmu_panoptic_coco.yaml --hyp data/hyp-p6.yaml \
+    --weights weights/yolov5s6.pt --project runs/DirectMHP --mse_conf_thre 0.40 --mse_loss_w 0.10 \
+    --name cmu_s_1280_e200_t40_lw010 --noval
+  
+  # testing (w/o TTA)
+  $ python val.py --rect --data data/cmu_panoptic_coco.yaml --img 1280 \
+    --weights runs/DirectMHP/cmu_s_1280_e200_t40_lw010/weights/best.pt --batch-size 8 --device 3 --frontal-face  
+  
+  # result
+  narrow-range: mAP=84.3, [MAE, Pitch, Yaw, Roll]: 6.9075, 8.0149, 5.7456, 6.9620
+  full-range:   mAP=80.8, [MAE, Pitch, Yaw, Roll]: 7.7385, 8.5446, 7.3194, 7.3515
+  ```
+  * DirectMHP-M
+  ```bash
+  # training (using --noval for faster training)
+  $ python -m torch.distributed.launch --nproc_per_node 4 train.py --workers 16 --device 0,1,2,3 \
+    --img 1280 --batch 64 --epochs 200 --data data/cmu_panoptic_coco.yaml --hyp data/hyp-p6.yaml \
+    --weights weights/yolov5m6.pt --project runs/DirectMHP --mse_conf_thre 0.40 --mse_loss_w 0.10 \
+    --name cmu_m_1280_e200_t40_lw010 --noval
+  
+  # testing (w/o TTA)
+  $ python val.py --rect --data data/cmu_panoptic_coco.yaml --img 1280 \
+    --weights runs/DirectMHP/cmu_m_1280_e200_t40_lw010/weights/best.pt --batch-size 8 --device 3 --frontal-face
+  
+  # result
+  narrow-range: mAP=85.8, [MAE, Pitch, Yaw, Roll]: 7.0773, 8.1255, 6.0219, 7.0846
+  full-range:   mAP=82.5, [MAE, Pitch, Yaw, Roll]: 7.7635, 8.6407, 7.1438, 7.5061
+  ```
 
+* **Single HPE task:**
+
+  > Basic training on `300W-LP` Dataset and testing on `AFLW2000` Dataset. Totally 15478 (train 122217 + val 2000) images.
+  ```bash
+  # training
+  $ python -m torch.distributed.launch --nproc_per_node 4 train.py --workers 16 --device 0,1,2,3 \
+    --img 512 --batch 400 --epochs 300 --data data/300w_lp_aflw2000.yaml --hyp data/hyp-p6.yaml \
+	  --weights weights/yolov5m6.pt --mse_conf_thre 0.40 --mse_loss_w 0.10 \
+	  --project runs/DirectMHP --name 300wlp_m_512_e300_t40_lw010
+  
+  # testing on AFLW2000
+  $ python val.py --rect --data data/300w_lp_aflw2000.yaml --img 512 \
+    --weights runs/DirectMHP/300wlp_m_512_e300_t40_lw010/weights/best.pt --batch-size 16 --device 3
+  
+  # result
+  narrow-range: [MAE, Pitch, Yaw, Roll]: 4.0354, 5.3508, 2.988, 3.7674
+  ```
+    
+  > Pretraining on [`WiderFace`](https://github.com/vitoralbiero/img2pose/blob/main/README.md#prepare-wider-face-dataset) by img2pose, and Finetuning on `300W-LP` Dataset.
+  ```bash
+  # Pretraining on WiderFace with 300 epochs
+  $ python -m torch.distributed.launch --nproc_per_node 4 train.py --workers 16 --device 0,1,2,3 \
+    --img 1280 --batch 60 --epochs 300 --data data/widerface_coco.yaml --hyp data/hyp-p6.yaml \
+    --weights weights/yolov5m6.pt --project runs/DirectMHP --mse_conf_thre 0.40 --mse_loss_w 0.10 \
+    --name wider_m_1280_e300_t40_lw010
+  
+  # Finetuning on 300W-LP with 50 epochs
+  $ python -m torch.distributed.launch --nproc_per_node 4 train.py --workers 16 --device 0,1,2,3 \
+    --img 512 --batch 600 --epochs 50 --data data/300w_lp_aflw2000.yaml --hyp data/hyp-p6.yaml \
+	  --weights runs/DirectMHP/wider_m_1280_e300_t40_lw010/weights/best.pt --project runs/DirectMHP \
+    --mse_conf_thre 0.40 --mse_loss_w 0.10 --name 300wlp_m_512_e50_finetune
+  
+  # testing on AFLW2000
+  $ python val.py --rect --data data/300w_lp_aflw2000.yaml --img 512 \
+    --weights runs/DirectMHP/300wlp_m_512_e50_finetune/weights/last.pt --batch-size 16 --device 3
+  
+  # result
+  narrow-range: [MAE, Pitch, Yaw, Roll]: 3.701, 4.9239, 2.876, 3.303
+  ```
+  
 * **Inference:**
+  * For single image or multiple images under one folder using `./demos/image.py`
+  ```bash
+  # single image
+  $ python demos/image.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+    --data data/agora_coco.yaml --device 3 --img-path test_imgs/AGORA/agora_val_2000400001.jpg
+  $ python demos/image.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+    --data data/agora_coco.yaml --device 3 --img-path test_imgs/COCO/000000018380.jpg --conf-thres 0.4
 
-
+  # multiple images
+  $ python demos/image.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+    --data data/agora_coco.yaml --device 3 --img-path test_imgs/AGORA/ --thickness 2
+  $ python demos/image.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+    --data data/agora_coco.yaml --device 3 --img-path test_imgs/COCO/ --conf-thres 0.4
+  ```
+  
+  * For 2D face mesh visualization using `./demos/image_vis3d.py` (only run method DirectMHP)
+  ```
+  $ python demos/image_vis3d.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+    --data data/agora_coco.yaml --device 3 --img-path test_imgs/AGORA/ --thickness 2
+  ```
+  
+  * For 2D face mesh visualization using `./demos/image_vis3d_6DRepNet.py` (run methods DirectMHP and 6DRepNet)
+  ```
+  $ python demos/image_vis3d_6DRepNet.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+    --data data/agora_coco.yaml --device 3 --img-path test_imgs/COCO/ --conf-thres 0.4
+  ```
+  
+  * For single video using `./demos/video.py`
+  ```
+  $ python demos/video.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+    --data data/agora_coco.yaml --device 3 --video-path test_imgs/path/to/filename.mp4 \
+    --conf-thres 0.3 --start 0 --thickness 3
+  ```
+  
 ## References
 
 * [YOLOv5 🚀 in PyTorch > ONNX > CoreML > TFLite](https://github.com/ultralytics/yolov5)
