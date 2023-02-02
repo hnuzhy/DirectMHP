@@ -35,6 +35,7 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 
 ## Dataset Preparing
 
+## Reproduction Details
 
 ## Training and Testing
 
@@ -65,7 +66,8 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
   
   # testing (w/o TTA)
   $ python val.py --rect --data data/agora_coco.yaml --img 1280 \
-    --weights runs/DirectMHP/agora_s_1280_e300_t40_lw010/weights/best.pt --batch-size 8 --device 3 --frontal-face
+    --weights runs/DirectMHP/agora_s_1280_e300_t40_lw010/weights/best.pt \
+    --batch-size 8 --device 3 --frontal-face
   
   # result
   narrow-range: mAP=82.0, [MAE, Pitch, Yaw, Roll]: 11.7567, 11.8002, 12.3257, 11.1441
@@ -81,7 +83,8 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
   
   # testing (w/o TTA)
   $ python val.py --rect --data data/agora_coco.yaml --img 1280 \
-    --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt --batch-size 8 --device 3 --frontal-face
+    --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+    --batch-size 8 --device 3 --frontal-face
   
   # result
   narrow-range: mAP=83.5, [MAE, Pitch, Yaw, Roll]: 10.5133, 11.1899,  9.8853, 10.4646
@@ -106,7 +109,8 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
   
   # testing (w/o TTA)
   $ python val.py --rect --data data/cmu_panoptic_coco.yaml --img 1280 \
-    --weights runs/DirectMHP/cmu_s_1280_e200_t40_lw010/weights/best.pt --batch-size 8 --device 3 --frontal-face  
+    --weights runs/DirectMHP/cmu_s_1280_e200_t40_lw010/weights/best.pt \
+    --batch-size 8 --device 3 --frontal-face  
   
   # result
   narrow-range: mAP=84.3, [MAE, Pitch, Yaw, Roll]: 6.9075, 8.0149, 5.7456, 6.9620
@@ -122,7 +126,8 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
   
   # testing (w/o TTA)
   $ python val.py --rect --data data/cmu_panoptic_coco.yaml --img 1280 \
-    --weights runs/DirectMHP/cmu_m_1280_e200_t40_lw010/weights/best.pt --batch-size 8 --device 3 --frontal-face
+    --weights runs/DirectMHP/cmu_m_1280_e200_t40_lw010/weights/best.pt \
+    --batch-size 8 --device 3 --frontal-face
   
   # result
   narrow-range: mAP=85.8, [MAE, Pitch, Yaw, Roll]: 7.0773, 8.1255, 6.0219, 7.0846
@@ -204,12 +209,14 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
     --conf-thres 0.3 --start 0 --thickness 3
   ```
   
+  
 ## References
 
 * [YOLOv5 🚀 in PyTorch > ONNX > CoreML > TFLite](https://github.com/ultralytics/yolov5)
 * [BMVC 2020 - WHENet: Real-time Fine-Grained Estimation for Wide Range Head Pose](https://github.com/Ascend-Research/HeadPoseEstimation-WHENet)
 * [CVPR 2021 - img2pose: Face Alignment and Detection via 6DoF, Face Pose Estimation](https://github.com/vitoralbiero/img2pose)
 * [ICIP 2022 - 6D Rotation Representation for Unconstrained Head Pose Estimation](https://github.com/thohemp/6DRepNet)
+* We also thank public datasets [AGORA](https://agora.is.tue.mpg.de/) and [CMU-Panoptic](http://domedb.perception.cs.cmu.edu/) for their excellent works.
 
 ### Citation
 
