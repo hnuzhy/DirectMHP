@@ -1,0 +1,1 @@
+Put the pretrained YOLOv5 model weights here.
