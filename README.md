@@ -8,28 +8,30 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 
 ## Illustrations
 
-* **Fig. 1.** Example images of two constructed challenging datasets: AGORA-HPE (*top row*) and CMU-HPE (*middle row*), and two widely used single HPE datasets: 300W-LP & AFLW2000 (*left-down*) and BIWI (*right-down*).
-![example1](./materials/datasetexamples.png)
-
-* **Fig. 2.** The pipeline illustration of existing HPE methods, which are all based on two separate stages, and our proposed one-stage MPHPE.
-![example2](./materials/illustration.png)
-
 * **Full-range angles** 
 ![example3](./materials/full_range.png)
 
 * **Results visualization**
 <table>
 <tr>
-<td><img src="./test_imgs/COCO/000000002685.jpg" height="300"></td>
-<td><img src="./test_imgs/COCO/000000018380.jpg" height="300"></td> 
-<td><img src="./test_imgs/COCO/000000038829.jpg" height="300"></td> 
+<td><img src="./test_imgs/COCO/000000002685.jpg" height="200"></td>
+<td><img src="./test_imgs/COCO/000000018380.jpg" height="200"></td> 
+<td><img src="./test_imgs/COCO/000000038829.jpg" height="200"></td> 
+<td><img src="./test_imgs/COCO/000000161925.jpg" height="200"></td> 
 </tr>
 <tr>
-<td><img src="./materials/000000002685_vis3d_res.jpg" height="300"></td>
-<td><img src="./materials/000000018380_vis3d_res.jpg" height="300"></td> 
-<td><img src="./materials/000000038829_vis3d_res.jpg" height="300"></td> 
+<td><img src="./materials/000000002685_vis3d_res.jpg" height="200"></td>
+<td><img src="./materials/000000018380_vis3d_res.jpg" height="200"></td> 
+<td><img src="./materials/000000038829_vis3d_res.jpg" height="200"></td> 
+<td><img src="./materials/000000161925_vis3d_res.jpg" height="200"></td> 
 </tr>
 </table>
+
+* **Fig. 1.** Example images of two constructed challenging datasets: AGORA-HPE (*top row*) and CMU-HPE (*middle row*), and two widely used single HPE datasets: 300W-LP & AFLW2000 (*left-down*) and BIWI (*right-down*).
+![example1](./materials/datasetexamples.png)
+
+* **Fig. 2.** The pipeline illustration of existing HPE methods, which are all based on two separate stages, and our proposed one-stage MPHPE.
+![example2](./materials/illustration.png)
 
 
 ## Installation
