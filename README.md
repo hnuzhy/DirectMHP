@@ -176,12 +176,22 @@ $ sh build_sim3dr.sh
   # gt_joints_3d : 3d SMPL-X joints in camera coordinates
   # gt_verts : 3d SMPL-X vertices in camera coordinates
   ```
-  * **Step 4:** generate the final AGORA-HPE dataset
+  * **Step 4:** generate the final AGORA-HPE dataset with images (train/validation) and annotations (coco_style_train.json / coco_style_validation.json). 
   ```bash
   # open and vim exps/AGORA/data_process_hpe.py file to change some file paths
   $ cp exps/AGORA/data_process_hpe.py /path/to/dataset/AGORA
   $ cp exps/AGORA/hpe_utils.py /path/to/dataset/AGORA
+  $ mkdir /path/to/dataset/AGORA/HPE
+  $ mkdir /path/to/dataset/AGORA/HPE/images
+  $ mkdir /path/to/dataset/AGORA/HPE/annotations
   $ python data_process_hpe.py
+  ```
+  * **Step 5:** convert these data into `YOLOv5+COCO` format for our project needing
+  ```bash
+  # modify ./data/agora_coco.yaml file with your AGORA-HPE paths
+  $ rm -rf /path/to/dataset/AGORA/HPE/yolov5_labels_coco
+  $ cd /path/to/project/DirectMHP
+  $ python utils/labels.py --data data/agora_coco.yaml
   ```
 
 #### CMU-HPE dataset
