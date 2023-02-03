@@ -479,7 +479,8 @@ $ python demos/image_vis3d.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw0
 
 * For 2D face mesh visualization using `./demos/image_vis3d_6DRepNet.py` (run methods DirectMHP and 6DRepNet)
 ```
-$ python demos/image_vis3d_6DRepNet.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+$ python demos/image_vis3d_6DRepNet.py \
+  --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
   --data data/agora_coco.yaml --device 3 --img-path test_imgs/COCO/ --conf-thres 0.4
 ```
   
