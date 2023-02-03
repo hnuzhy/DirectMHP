@@ -54,7 +54,25 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 
 ## Dataset Preparing
 
+* **Single HPE task:**
+  * **Only training on 300W-LP:**
+    * Following the `Protocol 1` in [FSA-Net](https://github.com/shamangary/FSA-Net). Training: `300W-LP`. Testing: `AFLW2000` or `BIWI`. Original dataset links: [[300W-LP, AFLW2000](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm)], [[BIWI](https://data.vision.ee.ethz.ch/cvl/gfanelli/head_pose/head_forest.html)]. The data pre-processing steps can be found in [FSA-Net Codes](https://github.com/shamangary/FSA-Net/blob/master/README.md#1-data-pre-processing).
+  * **Pretraining on WiderFace and finetuning on 300W-LP:**
+    * Following the weakly supervised training in [img2pose](https://github.com/vitoralbiero/img2pose). Pretraining: `WiderFace`. Finetuning: `300W-LP`. Testing: `AFLW2000` or `BIWI`. Original dataset links: [[WiderFace](http://shuoyang1213.me/WIDERFACE/)]. The data pre-processing steps can be found in [Prepare WIDER FACE dataset](https://github.com/vitoralbiero/img2pose/blob/main/README.md#prepare-wider-face-dataset).
+    * Then, convert these data into `YOLOv5+COCO` format for our project needing.
+    ```bash
+    # Following the COCO API, run ./exps/convert_coco_style_img2pose.py for getting coco_style_img2pose_train.json, coco_style_img2pose_val.json and images folder under the rootpath of downloaded WiderFace dataset.
+    $ python ./exps/convert_coco_style_img2pose.py
+    ```
+    following script ``. 
+
+* **MPHPE task:**
+
+
+
 ## Reproduction Details
+
+
 
 ## Training and Testing
 
@@ -171,7 +189,7 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
   narrow-range: [MAE, Pitch, Yaw, Roll]: 4.0354, 5.3508, 2.988, 3.7674
   ```
     
-  > Pretraining on [`WiderFace`](https://github.com/vitoralbiero/img2pose/blob/main/README.md#prepare-wider-face-dataset) by img2pose, and Finetuning on `300W-LP` Dataset.
+  > Pretraining on `WiderFace` by img2pose, and Finetuning on `300W-LP` Dataset.
   ```bash
   # Pretraining on WiderFace with 300 epochs
   $ python -m torch.distributed.launch --nproc_per_node 4 train.py --workers 16 --device 0,1,2,3 \
