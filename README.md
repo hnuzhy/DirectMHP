@@ -340,7 +340,8 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 * [ICIP 2022 - 6D Rotation Representation for Unconstrained Head Pose Estimation](https://github.com/thohemp/6DRepNet)
 * We also thank public datasets [AGORA](https://agora.is.tue.mpg.de/) and [CMU-Panoptic](http://domedb.perception.cs.cmu.edu/) for their excellent works.
 
-### Citation
+
+## Citation
 
 If you use our reconstructed datasets (AGORA-HPE and CMU-HPE) or works in your research, please cite with:
 ```
