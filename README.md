@@ -104,7 +104,7 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
   * [**DAD-3DNet**](https://github.com/PinataFarms/DAD-3DHeads): Clone *official* project, and run `exp/compare_dad3dnet.py` in root path.
   * [**HopeNet**](https://github.com/natanielruiz/deep-head-pose): Clone *official* project, and run `exp/compare_HopeNet.py` in root path.
   * [**FSA-Net**](https://github.com/shamangary/FSA-Net): Clone *unofficial* project [headpose-fsanet-pytorch](https://github.com/omasaht/headpose-fsanet-pytorch), and run `exp/compare_FSANet.py` in root path.
-  * [**WHE-Net**](https://github.com/Ascend-Research/HeadPoseEstimation-WHENet): Clone *unofficial* project [WHENet-yolov4-onnx-openvino](https://github.com/PINTO0309/HeadPoseEstimation-WHENet-yolov4-onnx-openvino), and run `exp/compare_WHENetONNX.py` in root path.
+  * [**WHE-Net**](https://github.com/Ascend-Research/HeadPoseEstimation-WHENet): Clone *unofficial* project [WHENet-ONNX](https://github.com/PINTO0309/HeadPoseEstimation-WHENet-yolov4-onnx-openvino), and run `exp/compare_WHENetONNX.py` in root path.
   * [**img2pose**](https://github.com/natanielruiz/deep-head-pose): Clone *official* project, and run `exp/compare_img2pose.py` in root path.
   * [**6DRepNet**](https://github.com/thohemp/6DRepNet): Clone *official* project, and run `exp/compare_6DRepNet.py` in root path.
   
