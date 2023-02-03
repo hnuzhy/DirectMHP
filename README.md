@@ -2,7 +2,12 @@
 
 Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estimation with Full-range Angles](https://arxiv.org/abs/2302.01110) (submitted to TMM)
 
-<img src=./materials/000003_mpiinew_test_DirectMHP_vis3d.mp4 height="270"/> <img src=./materials/000003_mpiinew_test_DirectMHP_vis3d.mp4 height="270"/> 
+<table>
+<tr>
+<td><img src="./materials/000002_mpiinew_test_DirectMHP_vis3d.gif" height="270"></td>
+<td><img src="./materials/000003_mpiinew_test_DirectMHP_vis3d.gif" height="270"></td> 
+</tr>
+</table>
 
 ## Paper Abstract
 > Existing head pose estimation (HPE) mainly focuses on single person with pre-detected frontal heads, which limits their applications in real complex scenarios with multi-persons. We argue that these single HPE methods are fragile and inefficient for Multi-Person Head Pose Estimation (MPHPE) since they rely on the separately trained face detector that cannot generalize well to full viewpoints, especially for heads with invisible face areas. In this paper, we focus on the full-range MPHPE problem, and propose a direct end-to-end simple baseline named DirectMHP. Due to the lack of datasets applicable to the full-range MPHPE, we firstly construct two benchmarks by extracting ground-truth labels for head detection and head orientation from public datasets AGORA and CMU Panoptic. They are rather challenging for having many truncated, occluded, tiny and unevenly illuminated human heads. Then, we design a novel end-to-end trainable one-stage network architecture by joint regressing locations and orientations of multi-head to address the MPHPE problem. Specifically, we regard pose as an auxiliary attribute of the head, and append it after the traditional object prediction. Arbitrary pose representation such as Euler angles is acceptable by this flexible design. Then, we jointly optimize these two tasks by sharing features and utilizing appropriate multiple losses. In this way, our method can implicitly benefit from more surroundings to improve HPE accuracy while maintaining head detection performance. We present comprehensive comparisons with state-of-the-art single HPE methods on public benchmarks, as well as superior baseline results on our constructed MPHPE datasets.
@@ -483,6 +488,19 @@ $ python demos/image_vis3d_6DRepNet.py --weights runs/DirectMHP/agora_m_1280_e30
 $ python demos/video.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
   --data data/agora_coco.yaml --device 3 --video-path test_imgs/path/to/filename.mp4 \
   --conf-thres 0.3 --start 0 --thickness 3
+```
+
+* For single video with 2D face mesh visualization using `./demos/video_vis3d.py`
+```bash
+# save as .mp4 file
+$ python demos/video_vis3d.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+  --data data/agora_coco.yaml --device 3 --video-path test_imgs/path/to/filename.mp4 \
+  --conf-thres 0.2 --start 0 --thickness 3 --alpha 0.2 --save-size 540
+
+# save as .gif file
+$ python demos/video_vis3d.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw010/weights/best.pt \
+  --data data/agora_coco.yaml --device 3 --video-path test_imgs/path/to/filename.mp4 \
+  --conf-thres 0.2 --start 0 --thickness 3 --alpha 0.2 --gif --gif-size 640 360
 ```
 
   
