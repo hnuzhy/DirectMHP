@@ -121,7 +121,7 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
   $ python gen_dataset_single_AGORA.py --db /path/to/dataset/AGORA-HPE/  \
     --output /path/to/project/FSA-Net_pytorch/datasets/AGORA_val.npz' --img_size 64
   
-  $ vim train.py and change it locally for training on AGORA
+  # vim train.py and change it locally for training on AGORA
   $ python train.py
   
   # vim test.py and change it locally for testing on AGORA
