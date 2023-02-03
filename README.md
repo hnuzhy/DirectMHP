@@ -196,7 +196,7 @@ $ sh build_sim3dr.sh
 
 #### CMU-HPE dataset
   * Project link: [http://domedb.perception.cs.cmu.edu/]. Github link: [https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox]. Using and downloading this dataset needs `personal registration`. We have no right to directly disseminate its data.
-  * **Step 1:** download videos and labels of raw CMU Panoptic Dataset
+  * **Step 1:** download videos and labels of raw CMU Panoptic Dataset. Some examples can be checked in [http://domedb.perception.cs.cmu.edu/dataset.html]
   ```bash
   # clone CMU Panoptic Dataset repo download API
   $ cd /path/to/dataset/CMU
