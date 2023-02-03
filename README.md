@@ -117,7 +117,7 @@ $ sh build_sim3dr.sh
 
 ### MPHPE datasets
 #### AGORA-HPE dataset
-  * Project link: [https://agora.is.tue.mpg.de/]. Github link: [https://github.com/pixelite1201/agora_evaluation]. Using and downloading this dataset needs `personal registration`. We have no right to directly disseminate its data.
+  * Project link: [https://agora.is.tue.mpg.de/]. Github link: [https://github.com/pixelite1201/agora_evaluation]. Using and downloading this dataset needs `personal registration`. We have no right to directly disseminate its data. You can construct AGORA-HPE following steps below.
   * **Step 1:** download raw images of `train-set` and `validation-set` from https://agora.is.tue.mpg.de/download.php
   ```bash
   # unzip downloaded .zip files under /path/to/dataset/AGORA/raw_data. The id is from 0 to 9
@@ -195,7 +195,7 @@ $ sh build_sim3dr.sh
   ```
 
 #### CMU-HPE dataset
-  * Project link: [http://domedb.perception.cs.cmu.edu/]. Github link: [https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox]. Using and downloading this dataset needs `personal registration`. We have no right to directly disseminate its data.
+  * Project link: [http://domedb.perception.cs.cmu.edu/]. Github link: [https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox]. Using and downloading this dataset needs `personal registration`. We have no right to directly disseminate its data. You can construct CMU-HPE following steps below.
   * **Step 1:** download videos and labels of raw CMU Panoptic Dataset. Some examples can be checked in [http://domedb.perception.cs.cmu.edu/dataset.html]
   ```bash
   # clone CMU Panoptic Dataset repo download API
