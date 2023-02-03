@@ -57,7 +57,7 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 * **Single HPE task:**
   * **Only training on 300W-LP:**
     * Following the `Protocol 1` in [FSA-Net](https://github.com/shamangary/FSA-Net). Training: `300W-LP`. Testing: `AFLW2000` or `BIWI`. Original dataset links: [[300W-LP, AFLW2000](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm)], [[BIWI](https://data.vision.ee.ethz.ch/cvl/gfanelli/head_pose/head_forest.html)]. The data pre-processing steps can be found in [FSA-Net Codes](https://github.com/shamangary/FSA-Net/blob/master/README.md#1-data-pre-processing).
-    * Then, convert these data (300W-LP, [AFLW2000, BIWI) into `YOLOv5+COCO` format for our project needing following scripts below. They may need our resorted json files as inputs: [train_300W_LP.json](), val_AFLW2000.json]() and [BIWI_test.json]().
+    * Then, convert these data (300W-LP, [AFLW2000, BIWI) into `YOLOv5+COCO` format for our project needing following scripts below. They may need our resorted json files as inputs: [train_300W_LP.json](https://drive.google.com/file/d/1EuLwczDdLml-WYlN3OInS3zhat4rXZRJ/view?usp=share_link), [val_AFLW2000.json](https://drive.google.com/file/d/12r1GDJVM6-0SZyEqtfvFaw1oQ4geB52I/view?usp=share_link) and [BIWI_test.json](https://drive.google.com/file/d/1KiKcQJ9JOkKfBddYd5RjYtqXug_-lbWQ/view?usp=share_link).
     ```bash
     # following the COCO API, run ./exps/convert_coco_style_300wlp_aflw2000.py
     # getting train_300W_LP_coco_style.json, val_AFLW2000_coco_style.json and images folder.
@@ -90,13 +90,76 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
     ```
 
 * **MPHPE task:**
+  * **AGORA-HPE dataset:**
+
+  * **CMU-HPE dataset:**
 
 
+## Reproduction of SOTA methods
+	
+* **Directly testing (w/o retraining):**
+  * [**3DDFA**](https://github.com/cleardusk/3DDFA): Clone the *official* project, and run `exp/compare_3ddfa.py` in its root path.
+  * [**3DDFA_v2**](https://github.com/cleardusk/3DDFA_V2): Clone the *unofficial* project [HeadPoseEstimate](https://github.com/bubingy/HeadPoseEstimate), and run `exp/compare_3ddfa_v2.py` in its root path.
+  * [**SynergyNet**](https://github.com/choyingw/SynergyNet): Clone the *official* project, and run `exp/compare_SynergyNet.py` in its root path.
+  * [**DAD-3DNet**](https://github.com/PinataFarms/DAD-3DHeads): Clone the *official* project, and run `exp/compare_dad3dnet.py` in its root path.
+  * [**HopeNet**](https://github.com/natanielruiz/deep-head-pose): Clone the *official* project, and run `exp/compare_HopeNet.py` in its root path.
+  * [**FSA-Net**](https://github.com/shamangary/FSA-Net): Clone the *unofficial* project [headpose-fsanet-pytorch](https://github.com/omasaht/headpose-fsanet-pytorch), and run `exp/compare_FSANet.py` in its root path.
+  * [**WHE-Net**](https://github.com/Ascend-Research/HeadPoseEstimation-WHENet): Clone the *unofficial* project [WHENet-yolov4-onnx-openvino](https://github.com/PINTO0309/HeadPoseEstimation-WHENet-yolov4-onnx-openvino), and run `exp/compare_WHENetONNX.py` in its root path.
+  * [**img2pose**](https://github.com/natanielruiz/deep-head-pose): Clone the *official* project, and run `exp/compare_img2pose.py` in its root path.
+  * [**6DRepNet**](https://github.com/thohemp/6DRepNet): Clone the *official* project, and run `exp/compare_6DRepNet.py` in its root path.
+  
+* **Retraining and testing:**
+  * **FSA-Net (narrow-range):**
+  ```bash
+  $ git clone https://github.com/omasaht/headpose-fsanet-pytorch FSA-Net_pytorch
 
-## Reproduction Details
+  # generate narrow-range single HPE datasets using ./exp/gen_dataset_single_AGORA.py
+  $ cp exp/gen_dataset_single_AGORA.py /path/to/project/FSA-Net_pytorch
+  $ cd /path/to/project/FSA-Net_pytorch
+  $ python gen_dataset_single_AGORA.py --db /path/to/dataset/AGORA-HPE/ \
+    --output /path/to/project/FSA-Net_pytorch/datasets/AGORA_train.npz' --img_size 64
+  $ python gen_dataset_single_AGORA.py --db /path/to/dataset/AGORA-HPE/  \
+    --output /path/to/project/FSA-Net_pytorch/datasets/AGORA_val.npz' --img_size 64
+  
+  $ vim train.py and change it locally for training on AGORA
+  $ python train.py
+  
+  # vim test.py and change it locally for testing on AGORA
+  $ python test.py
+  
+  # steps are similar for dataset CMU-HPE using ./exp/gen_dataset_single_CMU.py
+  ```
+  After retraining, see `exp/compare_FSANet_retrained.py` for testing MAE of retrained models
 
+  * **6DRepNet (full-range):**
+  ```bash
+  $ git clone https://github.com/thohemp/6DRepNet 6DRepNet
 
+  # generate full-range single HPE datasets using ./exp/gen_dataset_full_AGORA_CMU.py
+  $ cp exp/gen_dataset_full_AGORA_CMU.py /path/to/project/6DRepNet/sixdrepnet
+  $ cd /path/to/project/6DRepNet/sixdrepnet
+  $ python gen_dataset_full_AGORA_CMU.py --db /path/to/dataset/AGORA-HPE/ \
+    --img_size 256 --root_dir /path/to/project/6DRepNet/sixdrepnet/datasets/AGORA \
+    --filename files_train.txt --data_type train
+  $ python gen_dataset_full_AGORA_CMU.py --db /path/to/dataset/AGORA-HPE/ \
+    --img_size 256 --root_dir /path/to/project/6DRepNet/sixdrepnet/datasets/AGORA \
+    --filename files_val.txt --data_type val
 
+  # start training
+  $ python train.py --lr 0.0001 --dataset AGORA --data_dir datasets/AGORA/train \
+    --filename_list datasets/AGORA/files_train.txt --num_epochs 100 --batch_size 256 --gpu 0
+  
+  # testing after training
+  $ python convert.py output/SixDRepNet_AGORA_bs256_e100/epoch_last.tar \
+    output/SixDRepNet_AGORA_bs256_e100/epoch_last.pth
+  $ python test.py --dataset AGORA --data_dir datasets/AGORA/val \
+    --filename_list datasets/AGORA/files_val.txt \
+    --snapshot output/SixDRepNet_AGORA_bs256_e100/epoch_last.pth --gpu 3 --batch_size 1
+    
+  # steps are similar for dataset CMU-HPE using ./exp/gen_dataset_full_AGORA_CMU.py
+  ```
+  
+  
 ## Training and Testing
 
 * **Yaml:** Please refer these `./data/*.yaml` files to config your own .yaml file
