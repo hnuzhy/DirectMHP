@@ -361,4 +361,10 @@ If you use our reconstructed datasets (AGORA-HPE and CMU-HPE) or works in your r
   year={2021}
 }
 
+@article{zhou2022a,
+  title={A Simple Baseline for Direct 2D Multi-Person Head Pose Estimation with Full-range Angles},
+  author={Zhou, Huayi and Jiang, Fei and Lu, Hongtao},
+  journal={arXiv preprint arXiv:2302.01110},
+  year={2023}
+}
 ```
