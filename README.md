@@ -98,15 +98,15 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 ## Reproduction of SOTA methods
 	
 * **Directly testing (w/o retraining):**
-  * [**3DDFA**](https://github.com/cleardusk/3DDFA): Clone the *official* project, and run `exp/compare_3ddfa.py` in its root path.
-  * [**3DDFA_v2**](https://github.com/cleardusk/3DDFA_V2): Clone the *unofficial* project [HeadPoseEstimate](https://github.com/bubingy/HeadPoseEstimate), and run `exp/compare_3ddfa_v2.py` in its root path.
-  * [**SynergyNet**](https://github.com/choyingw/SynergyNet): Clone the *official* project, and run `exp/compare_SynergyNet.py` in its root path.
-  * [**DAD-3DNet**](https://github.com/PinataFarms/DAD-3DHeads): Clone the *official* project, and run `exp/compare_dad3dnet.py` in its root path.
-  * [**HopeNet**](https://github.com/natanielruiz/deep-head-pose): Clone the *official* project, and run `exp/compare_HopeNet.py` in its root path.
-  * [**FSA-Net**](https://github.com/shamangary/FSA-Net): Clone the *unofficial* project [headpose-fsanet-pytorch](https://github.com/omasaht/headpose-fsanet-pytorch), and run `exp/compare_FSANet.py` in its root path.
-  * [**WHE-Net**](https://github.com/Ascend-Research/HeadPoseEstimation-WHENet): Clone the *unofficial* project [WHENet-yolov4-onnx-openvino](https://github.com/PINTO0309/HeadPoseEstimation-WHENet-yolov4-onnx-openvino), and run `exp/compare_WHENetONNX.py` in its root path.
-  * [**img2pose**](https://github.com/natanielruiz/deep-head-pose): Clone the *official* project, and run `exp/compare_img2pose.py` in its root path.
-  * [**6DRepNet**](https://github.com/thohemp/6DRepNet): Clone the *official* project, and run `exp/compare_6DRepNet.py` in its root path.
+  * [**3DDFA**](https://github.com/cleardusk/3DDFA): Clone *official* project, and run `exp/compare_3ddfa.py` in root path.
+  * [**3DDFA_v2**](https://github.com/cleardusk/3DDFA_V2): Clone *unofficial* project [HeadPoseEstimate](https://github.com/bubingy/HeadPoseEstimate), and run `exp/compare_3ddfa_v2.py` in root path.
+  * [**SynergyNet**](https://github.com/choyingw/SynergyNet): Clone *official* project, and run `exp/compare_SynergyNet.py` in root path.
+  * [**DAD-3DNet**](https://github.com/PinataFarms/DAD-3DHeads): Clone *official* project, and run `exp/compare_dad3dnet.py` in root path.
+  * [**HopeNet**](https://github.com/natanielruiz/deep-head-pose): Clone *official* project, and run `exp/compare_HopeNet.py` in root path.
+  * [**FSA-Net**](https://github.com/shamangary/FSA-Net): Clone *unofficial* project [headpose-fsanet-pytorch](https://github.com/omasaht/headpose-fsanet-pytorch), and run `exp/compare_FSANet.py` in root path.
+  * [**WHE-Net**](https://github.com/Ascend-Research/HeadPoseEstimation-WHENet): Clone *unofficial* project [WHENet-yolov4-onnx-openvino](https://github.com/PINTO0309/HeadPoseEstimation-WHENet-yolov4-onnx-openvino), and run `exp/compare_WHENetONNX.py` in root path.
+  * [**img2pose**](https://github.com/natanielruiz/deep-head-pose): Clone *official* project, and run `exp/compare_img2pose.py` in root path.
+  * [**6DRepNet**](https://github.com/thohemp/6DRepNet): Clone *official* project, and run `exp/compare_6DRepNet.py` in root path.
   
 * **Retraining and testing:**
   * **FSA-Net (narrow-range):**
