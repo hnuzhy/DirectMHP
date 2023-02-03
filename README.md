@@ -4,8 +4,8 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 
 <table>
 <tr>
-<td><img src="./materials/000002_mpiinew_test_DirectMHP_vis3d.gif" height="270"></td>
-<td><img src="./materials/000003_mpiinew_test_DirectMHP_vis3d.gif" height="270"></td> 
+<td><img src="./materials/000002_mpiinew_test_DirectMHP_vis3d.gif" height="240"></td>
+<td><img src="./materials/000003_mpiinew_test_DirectMHP_vis3d.gif" height="240"></td> 
 </tr>
 </table>
 
