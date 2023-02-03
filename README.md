@@ -129,7 +129,6 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
   
   # steps are similar for dataset CMU-HPE using ./exp/gen_dataset_single_CMU.py
   ```
-  After retraining, see `exp/compare_FSANet_retrained.py` for testing MAE of retrained models
 
   * **6DRepNet (full-range):**
   ```bash
