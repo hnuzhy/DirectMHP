@@ -57,14 +57,37 @@ Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estima
 * **Single HPE task:**
   * **Only training on 300W-LP:**
     * Following the `Protocol 1` in [FSA-Net](https://github.com/shamangary/FSA-Net). Training: `300W-LP`. Testing: `AFLW2000` or `BIWI`. Original dataset links: [[300W-LP, AFLW2000](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/main.htm)], [[BIWI](https://data.vision.ee.ethz.ch/cvl/gfanelli/head_pose/head_forest.html)]. The data pre-processing steps can be found in [FSA-Net Codes](https://github.com/shamangary/FSA-Net/blob/master/README.md#1-data-pre-processing).
+    * Then, convert these data (300W-LP, [AFLW2000, BIWI) into `YOLOv5+COCO` format for our project needing following scripts below. They may need our resorted json files as inputs: [train_300W_LP.json](), val_AFLW2000.json]() and [BIWI_test.json]().
+    ```bash
+    # following the COCO API, run ./exps/convert_coco_style_300wlp_aflw2000.py
+    # getting train_300W_LP_coco_style.json, val_AFLW2000_coco_style.json and images folder.
+    $ cd /path/to/project/DirectMHP
+    $ python exps/convert_coco_style_300wlp_aflw2000.py
+    
+    # preparing yolov5-style labels, remember config the data/300w_lp_aflw2000.yaml file
+    $ rm -rf /path/to/dataset/300W-LP/yolov5_labels
+    $ python utils/labels.py --data data/300w_lp_aflw2000.yaml
+    
+    # if testing on BIWI, remember config the data/300w_lp_biwi.yaml file
+    $ cd /path/to/project/DirectMHP
+    $ python ./exps/convert_coco_style_300wlp_biwi.py
+    $ rm -rf /path/to/dataset/300W-LP/yolov5_labels
+    $ python utils/labels.py --data data/300w_lp_biwi.yaml
+    ```
+    
   * **Pretraining on WiderFace and finetuning on 300W-LP:**
     * Following the weakly supervised training in [img2pose](https://github.com/vitoralbiero/img2pose). Pretraining: `WiderFace`. Finetuning: `300W-LP`. Testing: `AFLW2000` or `BIWI`. Original dataset links: [[WiderFace](http://shuoyang1213.me/WIDERFACE/)]. The data pre-processing steps can be found in [Prepare WIDER FACE dataset](https://github.com/vitoralbiero/img2pose/blob/main/README.md#prepare-wider-face-dataset).
-    * Then, convert these data into `YOLOv5+COCO` format for our project needing.
+    * Then, convert these data (WiderFace) into `YOLOv5+COCO` format for our project needing following scripts below.
     ```bash
-    # Following the COCO API, run ./exps/convert_coco_style_img2pose.py for getting coco_style_img2pose_train.json, coco_style_img2pose_val.json and images folder under the rootpath of downloaded WiderFace dataset.
-    $ python ./exps/convert_coco_style_img2pose.py
+    # following the COCO API, run ./exps/convert_coco_style_img2pose.py
+    # getting coco_style_img2pose_train.json, coco_style_img2pose_val.json and images folder.
+    $ cd /path/to/project/DirectMHP
+    $ python exps/convert_coco_style_img2pose.py
+    
+    # preparing yolov5-style labels, remember config the data/widerface_coco.yaml file
+    $ rm -rf /path/to/dataset/WiderFace/yolov5_labels_coco
+    $ python utils/labels.py --data data/widerface_coco.yaml
     ```
-    following script ``. 
 
 * **MPHPE task:**
 
