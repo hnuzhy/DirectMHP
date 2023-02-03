@@ -118,13 +118,75 @@ $ sh build_sim3dr.sh
 ### MPHPE datasets
 #### AGORA-HPE dataset
   * Project link: [https://agora.is.tue.mpg.de/]. Github link: [https://github.com/pixelite1201/agora_evaluation]. Using and downloading this dataset needs `personal registration`. We have no right to directly disseminate its data.
-  * 
+  * **Step 1:** download raw images of `train-set` and `validation-set` from https://agora.is.tue.mpg.de/download.php
+  ```bash
+  # unzip downloaded .zip files under /path/to/dataset/AGORA/raw_data. The id is from 0 to 9
+  $ cd /path/to/dataset/AGORA/
+  $ mkdir /path/to/dataset/AGORA/demo
+  $ unzip ./raw_data/validation_images_1280x720.zip -d demo/images
+  $ unzip ./raw_data/train_images_1280x720_<id>.zip -d demo/images
   
+  # then, move 10 folders of train-set raw images into one folder. The id is from 0 to 9
+  $ mv demo/images/train_<id>/* demo/images/train
+  ```
+  * **Step 2:** download raw `SMPL-X fits`, `SMPL-X models` and precomputed `Cams`
+  ```bash
+  # Download the Camera dataframe and extract them into demo/Cam
+  $ unzip ./raw_data/validation_Cam.zip -d demo/Cam
+  $ unzip ./raw_data/train_Cam.zip -d demo/Cam
   
+  # Download the SMPL-X fits and extract them into demo/GT_fits
+  $ unzip ./raw_data/gt_scan_info.zip -d demo/GT_fits
+  $ unzip ./raw_data/smplx_gt.zip -d demo/GT_fits
+  
+  # Download the SMPL-X model (npz version) from https://smpl-x.is.tue.mpg.de/download.php
+  # Rename the models to SMPLX_MALE.npz, SMPLX_FEMALE.npz and SMPLX_NEUTRAL.npz
+  # Place these three model under demo/model/smplx
+  ```
+  * **Step 3:** download agora_evaluation code and generate `Cam/*_withjv.pkl` files. Because the official agora_evaluation code does not output `camera parameters` in `*_withjv.pkl` file, we have modified two files `projection.py` and `get_joints_verts_from_dataframe.py` placed under `./exps/AGORA/agora_evaluation/`. Please replace the official files with them.
+  ```bash
+  $ git clone https://github.com/pixelite1201/agora_evaluation agora_evaluation
+  $ mv agora_evaluation /path/to/dataset/AGORA/
+  $ cd /path/to/dataset/AGORA/agora_evaluation
+  $ pip install .
+  $ cp /path/to/dataset/AGORA/raw_data/smplx_kid_template.npy ./utils/
+  $ ln -s /path/to/dataset/AGORA/demo /path/to/dataset/AGORA/agora_evaluation/demo
+  
+  # replace with two modified files
+  $ cp exps/AGORA/agora_evaluation/projection.py \
+    /path/to/dataset/AGORA/agora_evaluation/agora_evaluation
+  $ cp exps/AGORA/agora_evaluation/get_joints_verts_from_dataframe.py \
+    /path/to/dataset/AGORA/agora_evaluation/agora_evaluation
+  
+  # install smplx model
+  $ git clone https://github.com/vchoutas/smplx smplx
+  $ mv smplx /path/to/dataset/AGORA/
+  $ cd /path/to/dataset/AGORA/smplx
+  $ pip install .
+  $ pip install ./smplx
+  
+  $ project_joints --imgFolder demo/images/validation --loadPrecomputed demo/Cam/validation_Cam \
+    --modeltype SMPLX --kid_template_path utils/smplx_kid_template.npy --modelFolder demo/model \
+    --gt_model_path demo/GT_fits/ --imgWidth 1280 --imgHeight 720
+  $ project_joints --imgFolder demo/images/train --loadPrecomputed demo/Cam/train_Cam \
+    --modeltype SMPLX --kid_template_path utils/smplx_kid_template.npy --modelFolder demo/model \
+    --gt_model_path demo/GT_fits/ --imgWidth 1280 --imgHeight 720
+  # Above scripts will add following fields in all the .pkl files in the demo/Cam folder.
+  # gt_joints_2d : projected 2d SMPL-X keypoints/joints in image
+  # gt_joints_3d : 3d SMPL-X joints in camera coordinates
+  # gt_verts : 3d SMPL-X vertices in camera coordinates
+  ```
+  * **Step 4:** generate the final AGORA-HPE dataset
+  ```bash
+  # open and vim exps/AGORA/data_process_hpe.py file to change some file paths
+  $ cp exps/AGORA/data_process_hpe.py /path/to/dataset/AGORA
+  $ cp exps/AGORA/hpe_utils.py /path/to/dataset/AGORA
+  $ python data_process_hpe.py
+  ```
+
 #### CMU-HPE dataset
   * Project link: [http://domedb.perception.cs.cmu.edu/]. Github link: [https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox]. Using and downloading this dataset needs `personal registration`. We have no right to directly disseminate its data.
-  * 
-  
+
 
 ## Reproduction of SOTA methods
 	
