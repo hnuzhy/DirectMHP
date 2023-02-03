@@ -196,6 +196,53 @@ $ sh build_sim3dr.sh
 
 #### CMU-HPE dataset
   * Project link: [http://domedb.perception.cs.cmu.edu/]. Github link: [https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox]. Using and downloading this dataset needs `personal registration`. We have no right to directly disseminate its data.
+  * **Step 1:** download videos and labels of raw CMU Panoptic Dataset
+  ```bash
+  # clone CMU Panoptic Dataset repo download API
+  $ cd /path/to/dataset/CMU
+  $ git clone https://github.com/CMU-Perceptual-Computing-Lab/panoptic-toolbox panoptic-toolbox
+  $ mv panoptic-toolbox /path/to/dataset/CMU
+  
+  # we select 17 sequences for CMU-HPE construction from released 84 sequences.
+  # please see ./exps/CMU/released_seqs_excel.xlsx and /exps/CMU/selected_HPE_list.txt for reference.
+  # start download videos and labels (camera parameters and 3D face landmarks)
+  $ cd /path/to/dataset/CMU
+  $ cp exps/CMU/panoptic-toolbox/getData_hdVideo.sh \
+    /path/to/dataset/CMU/panoptic-toolbox/scripts
+  $ cp exps/CMU/panoptic-toolbox/getDB_panoptic_ver1_2_hdVideo*.sh \
+    /path/to/dataset/CMU/panoptic-toolbox/scripts
+  $ cd /path/to/dataset/CMU/panoptic-toolbox/scripts
+  $ ./scripts/getDB_panoptic_ver1_2_hdVideo.sh
+  
+  # above script will take super long time. 
+  # you can run getDB_panoptic_ver1_2_hdVideo_t<id>.sh for piecewise downloading
+  $ ./scripts/getDB_panoptic_ver1_2_hdVideo_t<id>.sh
+  
+  # after downloading, you will get 17 folders (sequences) under /path/to/dataset/CMU/panoptic-toolbox
+  # each folder contains multi-view hdVideos, hdFace3d.tar and calibration_<sequence_name>.json
+  ```
+  * **Step 2:** generate the final CMU-HPE dataset with images (train/validation) and annotations (coco_style_sampled_train.json / coco_style_sampled_validation.json). 
+  ```bash
+  # open and vim exps/CMU/data_statistic_hpe.py file to change some file paths
+  $ cp exps/CMU/data_statistic_hpe.py /path/to/dataset/CMU
+  $ cp exps/CMU/hpe_utils.py /path/to/dataset/CMU
+  $ mkdir /path/to/dataset/CMU/HPE
+  $ mkdir /path/to/dataset/CMU/HPE/images_sampled
+  $ python data_statistic_hpe.py
+  
+  # split sampled 32K~ images into train/val sets using coco_style_sampled.json
+  $ cp exps/CMU/data_split_hpe.py /path/to/dataset/CMU
+  $ mkdir /path/to/dataset/CMU/HPE/images
+  $ mkdir /path/to/dataset/CMU/HPE/annotations
+  $ python data_split_hpe.py
+  ```
+  * **Step 3:** convert these data into `YOLOv5+COCO` format for our project needing
+  ```bash
+  # modify ./data/cmu_panoptic_coco.yaml file with your CMU-HPE paths
+  $ rm -rf /path/to/dataset/CMU/HPE/yolov5_labels_coco
+  $ cd /path/to/project/DirectMHP
+  $ python utils/labels.py --data data/cmu_panoptic_coco.yaml
+  ```
 
 
 ## Reproduction of SOTA methods
