@@ -1,6 +1,5 @@
 # DirectMHP
-
-Code for my paper [DirectMHP: Direct 2D Multi-Person Head Pose Estimation with Full-range Angles](https://arxiv.org/abs/2302.01110)
+Codes for my paper "[DirectMHP: Direct 2D Multi-Person Head Pose Estimation with Full-range Angles](https://arxiv.org/abs/2302.01110)"
 
 <table>
 <tr>
