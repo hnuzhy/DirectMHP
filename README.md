@@ -1,6 +1,6 @@
 # DirectMHP: Direct 2D Multi-Person Head Pose Estimation
 
-Code for my paper [A Simple Baseline for Direct 2D Multi-Person Head Pose Estimation with Full-range Angles](https://arxiv.org/abs/2302.01110)
+Code for my paper [DirectMHP: Direct 2D Multi-Person Head Pose Estimation with Full-range Angles](https://arxiv.org/abs/2302.01110)
 
 <table>
 <tr>
