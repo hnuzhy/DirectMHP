@@ -325,7 +325,8 @@ def parse_pkl_file(data, type, index,
 
 if __name__ == "__main__":
     
-    debug = True  # True or False, set as True will plot labels on partial images for visualization
+    # Please set debug = False and has_parsed = False when you first running this script.
+    debug = False  # True or False, set as True will plot labels on partial images for visualization
     has_parsed = False  # True or False, set as True will not operate parse_pkl_file() for saving time
     load_pkl_flag = True # True or False, set as True will always load pkl files (taking much time)
     
