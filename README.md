@@ -1,7 +1,7 @@
 # DirectMHP
 Codes for my paper "[DirectMHP: Direct 2D Multi-Person Head Pose Estimation with Full-range Angles](https://arxiv.org/abs/2302.01110)"
 
-* [**2023-03-07**] We have collected many SOTA HPE methods in our [face_head_related](https://github.com/hnuzhy/CV_DL_Gather/blob/master/face_head_related/readme.md#-Head-Pose-Estimation) blog. Feel free to refer it.
+* [**2023-03-07**] We have collected many SOTA HPE methods in our [[face_head_related](https://github.com/hnuzhy/CV_DL_Gather/blob/master/face_head_related/readme.md#-Head-Pose-Estimation)] blog. Feel free to refer it.
 * [**2023-02-17**] We have decided to release our DirectMHP-S/M models trained on the benchmark [[AGORA-HPE](#agora-hpe-dataset)]. Their google drive links are [[agora_s_1280_e300_t40_lw010_best.pt](https://drive.google.com/file/d/1A2BDldDpk8M7VdWuHzNrDa9NQs12isvl/view?usp=share_link)] and [[agora_m_1280_e300_t40_lw010_best.pt](https://drive.google.com/file/d/1stOEWS6AeZAee9GPH6SrMd1IfUcwrURg/view?usp=share_link)]. Please follow the [[Inference](#inference)] section to test on your own images/videos.
 
 
