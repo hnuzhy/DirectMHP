@@ -1,7 +1,7 @@
 # DirectMHP
 Codes for my paper "[DirectMHP: Direct 2D Multi-Person Head Pose Estimation with Full-range Angles](https://arxiv.org/abs/2302.01110)"
 
-
+* [**2023-03-22**] We uploaded the revised [6DRepNet](./exps/sixdrepnet.zip) project for the single HPE training with full-range angles. Please refer its [original code](https://github.com/thohemp/6DRepNet) and [our re-training steps](#6drepnet-full-range) if you want to reproduce.
 * [**2023-03-15**] We uploaded our DirectMHP-S/M pretrained models trained on [[CMU-HPE](#cmu-hpe-dataset)] and [[AGORA-HPE](#agora-hpe-dataset)] in [Hugging Face](https://huggingface.co/HoyerChou/DirectMHP). Please follow the [[Inference](#inference)] section to test on your own images/videos.
 * [**2023-03-07**] We have collected many SOTA HPE methods in our [[face_head_related](https://github.com/hnuzhy/CV_DL_Gather/blob/master/face_head_related/readme.md#-Head-Pose-Estimation)] blog. Feel free to refer it.
 
