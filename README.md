@@ -1,6 +1,7 @@
 # DirectMHP
 Codes for my paper "[DirectMHP: Direct 2D Multi-Person Head Pose Estimation with Full-range Angles](https://arxiv.org/abs/2302.01110)"
 
+* [**2023-03-23**] We added [[Licenses](#licenses)] for your need if you want to use our work in your business project.
 * [**2023-03-22**] We uploaded the revised [[6DRepNet](./exps/sixdrepnet.zip)] project for the single HPE training with full-range angles. Please refer its [[original code](https://github.com/thohemp/6DRepNet)] and [[our re-training steps](#6drepnet-full-range)] if you want to reproduce.
 * [**2023-03-15**] We uploaded our DirectMHP-S/M pretrained models trained on [[CMU-HPE](#cmu-hpe-dataset)] and [[AGORA-HPE](#agora-hpe-dataset)] in [Hugging Face](https://huggingface.co/HoyerChou/DirectMHP). Please follow the [[Inference](#inference)] section to test on your own images/videos.
 * [**2023-03-07**] We have collected many SOTA HPE methods in our [[face_head_related](https://github.com/hnuzhy/CV_DL_Gather/blob/master/face_head_related/readme.md#-Head-Pose-Estimation)] blog. Feel free to refer it.
@@ -39,6 +40,7 @@ Codes for my paper "[DirectMHP: Direct 2D Multi-Person Head Pose Estimation with
   * [Single HPE task](#single-hpe-task)
 - [Inference](#inference)
 - [References](#references)
+- [Licenses](#licenses)
 - [Citation](#citation)
 <!--te-->
 
@@ -516,6 +518,15 @@ $ python demos/video_vis3d.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw0
 * [CVPR 2021 - img2pose: Face Alignment and Detection via 6DoF, Face Pose Estimation](https://github.com/vitoralbiero/img2pose)
 * [ICIP 2022 - 6D Rotation Representation for Unconstrained Head Pose Estimation](https://github.com/thohemp/6DRepNet)
 * We also thank public datasets [AGORA](https://agora.is.tue.mpg.de/) and [CMU-Panoptic](http://domedb.perception.cs.cmu.edu/) for their excellent works.
+
+
+## Licenses
+
+Our work is based on public code and datasets. If you plan to add our work to your business project, please obtain the following enterprise licenses.
+* **DirectMHP:** GNU General Public License v3.0 (GPL-3.0 License): See [LICENSE](./LICENSE.txt) file for details. 
+* **YOLOv5:** To request an Enterprise License please complete the form at [Ultralytics Licensing](https://ultralytics.com/license)
+* **AGORA-HPE:** Data & Software Copyright License for non-commercial scientific research purposes [AGORA License](https://agora.is.tue.mpg.de/license.html)
+* **CMU-HPE:** CMU Panoptic Studio dataset is shared only for research purposes, and this cannot be used for any commercial purposes. The dataset or its modified version cannot be redistributed without permission from dataset organizers [CMU Panoptic Homepage](http://domedb.perception.cs.cmu.edu/)
 
 
 ## Citation
