@@ -510,6 +510,7 @@ $ python demos/video_vis3d.py --weights runs/DirectMHP/agora_m_1280_e300_t40_lw0
   --conf-thres 0.2 --start 0 --thickness 3 --alpha 0.2 --gif --gif-size 640 360
 ```
 
+> Noting: For MPHPE task on large size image with multi-persons, we suggest you use weight `agora_m_1280_e300_t40_lw010_best.pth`. For single HPE task on image with only one person's face/head, we suggest you use weight `300wlp_m_512_e50_finetune_best.pth`. We have released them in [Hugging Face](https://huggingface.co/HoyerChou/DirectMHP). 
   
 ## References
 
