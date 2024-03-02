@@ -2,7 +2,6 @@ import onnx
 import torch
 import argparse
 from utils.torch_utils import select_device
-from models.experimental import attempt_load
 from model import DirectMHPInfer
 
 if __name__ == "__main__":
