@@ -1,0 +1,22 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project]
+name = "DirectMHP_Inference_seoy"
+version = "0.1.0"
+authors = [
+  { name="seoy", email="1mayanktomar@gmail.com" },
+]
+description = "Simplied package for inference from DirectMHP"
+readme = "README.md"
+requires-python = ">=3.6, <=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/0Mayank/DirectMHP"
+Issues = "https://github.com/0Mayank/DirectMHP/issues"
